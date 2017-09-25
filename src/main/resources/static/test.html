@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button onclick="test()">aa</button>
+</body>
+<script>
+    function test() {
+        $.get("http://localhost:8080/orderMessage").done(
+            reply=>{
+                console.log(reply)
+                var data = reply.data
+                $.ajax({
+                    url:"http://localhost:8080/url",
+                    type: 'post',
+                    data:JSON.stringify(data),
+                    contentType:"application/json"
+                }).done(
+                    reply=>console.log(reply)
+
+                ).fail(reply=>console.log("fail"))
+            }).fail(reply=>console.log("fail"))
+    }
+</script>
+</html>
