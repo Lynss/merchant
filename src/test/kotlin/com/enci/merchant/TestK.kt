@@ -3,6 +3,8 @@ package com.enci.merchant
 //使用as可以改变函数名字、、、
 import org.junit.Test as t
 import java.util.*
+import java.util.concurrent.locks.Condition
+import java.util.concurrent.locks.ReentrantLock
 import kotlin.collections.ArrayList
 
 //const
@@ -54,7 +56,7 @@ fun main(args: Array<String>) {
         val thread = Thread {
 
             b.transfer((Math.random() * 100).toInt(), (Math.random() * 100).toInt(), Math.random() * 100)
-            Thread.sleep((Math.random() * 3000).toLong())
+            Thread.sleep((Math.random() * 500).toLong())
         }
         thread.start()
         i++
@@ -340,13 +342,26 @@ class testKotlin : BaseTest() {
 
     data class Bank(private val initMoney: Double, private val accountNum: Int) {
         private val accounts = DoubleArray(accountNum, { initMoney })
+        private val bankLock = ReentrantLock()
+        private var condition = bankLock.newCondition()
         var total = accountNum * initMoney
         fun transfer(from: Int, to: Int, money: Double) {
-            accounts[from] -= money
-            accounts[to] += money
-            total = accounts.reduce { a, b -> a + b }
-            println("账户$from 转钱$money 到账户$to ,银行总余额：$total")
+            try {
+                bankLock.lock()
+                if (accounts[from]<money) {
+                    println("账户$from 余额不足：${accounts[from]}")
+                    condition.await()
+                }
+                accounts[from] -= money
+                accounts[to] += money
+                condition.signalAll()
+                total = accounts.reduce { a, b -> a + b }
+                println("账户$from 转钱$money 到账户$to ,银行总余额：$total")
+            }finally {
+                bankLock.unlock()
+            }
         }
+
     }
 
 
