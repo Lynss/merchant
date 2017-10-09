@@ -5,8 +5,9 @@ import org.springframework.stereotype.Component
 import javax.servlet.*
 import javax.servlet.http.HttpServletResponse
 import java.io.IOException
+import javax.servlet.annotation.WebFilter
 
-@Component
+@WebFilter
 class CorsFilter : Filter {
     @Throws(ServletException::class)
     override fun init(filterConfig: FilterConfig) {

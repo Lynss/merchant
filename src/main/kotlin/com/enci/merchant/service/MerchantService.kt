@@ -6,5 +6,4 @@ import javax.servlet.http.HttpServletResponse
 
 interface MerchantService {
     fun  postForPlatformData(testRequestData: String,response:HttpServletResponse): MerchantResult<RequestPayMessageDTO>
-    fun testProperties()
 }

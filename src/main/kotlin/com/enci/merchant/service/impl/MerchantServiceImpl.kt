@@ -37,9 +37,8 @@ class MerchantServiceImpl : MerchantService {
         val queryBody = Base64.encode(RSAUtils.encryptByPrivateKey(testRequestData.toByteArray(), PRIVATE_KEY))
         val getUrlConfig = HttpConfig("post", SIGNATURE_METHOD, PRIVATE_KEY, getUrl, APP_ID, VERSION,
                 MediaType.APPLICATION_JSON_TYPE, null, queryBody)
-        val JSON = jacksonObjectMapper()
         //获取数据后对数据进行解析，并且组装成需要的值
-        val merchantResult = JSON.readValue<MerchantResult<RequestPayMessageDTO>>(queryHttpByConfigs(getUrlConfig))
+        val merchantResult = jacksonObjectMapper().readValue<MerchantResult<RequestPayMessageDTO>>(queryHttpByConfigs(getUrlConfig))
         if (merchantResult.code!=MerchantResultEnum.EASY_PAY_SUCCESS.code){
             throw BusinessException(MerchantResultEnum.EASY_PAY_FAIL_GETURL)
         }
@@ -77,9 +76,5 @@ class MerchantServiceImpl : MerchantService {
             "post" -> beforeSent.post(String::class.java, httpConfig.postQueryBody)
             else -> throw BusinessException(MerchantResultEnum.FAIL_UNSUPPORT_HTTP_METHOD)
         }
-    }
-
-    override fun testProperties() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

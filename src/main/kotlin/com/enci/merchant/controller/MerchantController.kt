@@ -17,7 +17,6 @@ class MerchantController(val merchantService: MerchantService) {
     val objectMapper = jacksonObjectMapper()
     @GetMapping("/orderMessage")
     fun orderMessage(response: HttpServletResponse): MerchantResult<TradeRequest> {
-        response.setHeader("Access-Control-Allow-Origin", "*")
         val testDemoString = """
             {
                 "merId": "MER001",
