@@ -1,4 +1,4 @@
-package com.enci.merchant.model.pojo;
+package com.enci.merchant.domain.pojo;
 
 
 

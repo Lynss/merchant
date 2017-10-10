@@ -1,6 +1,6 @@
-package com.enci.merchant.model.constant
+package com.enci.merchant.domain.constant
 
-import com.enci.merchant.model.pojo.BaseReturn
+import com.enci.merchant.domain.pojo.BaseReturn
 
 enum class MerchantResultEnum(override val code:Int, override val message:String): BaseReturn {
     EASY_PAY_SUCCESS(1,"成功"),

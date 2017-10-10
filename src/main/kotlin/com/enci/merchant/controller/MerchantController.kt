@@ -1,9 +1,9 @@
 package com.enci.merchant.controller
 
-import com.enci.merchant.model.constant.MerchantResultEnum
-import com.enci.merchant.model.pojo.MerchantResult
-import com.enci.merchant.model.pojo.RequestPayMessageDTO
-import com.enci.merchant.model.pojo.TradeRequest
+import com.enci.merchant.domain.constant.MerchantResultEnum
+import com.enci.merchant.domain.pojo.MerchantResult
+import com.enci.merchant.domain.pojo.RequestPayMessageDTO
+import com.enci.merchant.domain.pojo.TradeRequest
 import com.enci.merchant.service.MerchantService
 import com.enci.merchant.utils.IDUtil
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper

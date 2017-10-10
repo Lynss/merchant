@@ -1,10 +1,10 @@
 package com.enci.merchant.service.impl
 
-import com.enci.merchant.model.BusinessException
-import com.enci.merchant.model.constant.MerchantResultEnum
-import com.enci.merchant.model.pojo.HttpConfig
-import com.enci.merchant.model.pojo.MerchantResult
-import com.enci.merchant.model.pojo.RequestPayMessageDTO
+import com.enci.merchant.domain.BusinessException
+import com.enci.merchant.domain.constant.MerchantResultEnum
+import com.enci.merchant.domain.pojo.HttpConfig
+import com.enci.merchant.domain.pojo.MerchantResult
+import com.enci.merchant.domain.pojo.RequestPayMessageDTO
 import com.enci.merchant.service.MerchantService
 import com.enci.signature.Base64
 import com.enci.signature.Parameters
