@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component
 @Component
 class testTask {
     val logger = LoggerFactory.getLogger(testTask::class.java)
-//    @Scheduled(cron = "0 0/1 * * * ?")
+    @Scheduled(cron = "0 0/1 * * * ?")
     fun testJob() {
         // 间隔2分钟,执行任务
         val current = Thread.currentThread()

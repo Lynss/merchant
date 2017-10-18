@@ -37,3 +37,27 @@ interface BaseReturn {
     val code: Int
     val message: String
 }
+
+class TradeRequest : Serializable {
+    var merId: String? = null
+    var userId: String? = null
+    var outTradeNo: String? = null
+    var payeeCusOpenid: String? = null
+    var payerCusOpenid: String? = null
+    var payeeCusName: String? = null
+    var payerCusName: String? = null
+    var orderName: String? = null
+    var orderType: Char = ' '
+    var originalAmount: Int? = null
+    var discountAmount: Int? = null
+    var tradeAmount: Int? = null
+    var remark: String? = null
+    var notifyUrl: String? = null
+    var limitPay: String? = null
+    var pmtTag: String? = null
+    var sn: String? = null
+
+    companion object {
+        private const val serialVersionUID = 2203067580496371853L
+    }
+}

@@ -20,7 +20,10 @@
                     data:JSON.stringify(data),
                     contentType:"application/json"
                 }).done(
-                    reply=>console.log(reply)
+                    reply=>{
+                        console.log(reply)
+                        console.log(reply.data.tradeUrl)
+                    }
                 ).fail(reply=>console.log("fail"))
             }).fail(reply=>console.log("fail"))
     }
