@@ -11,16 +11,13 @@ data class RequestPayMessageDTO(var mchId: String, var tradeUrl: String) : Seria
 }
 
 
-data class MerchantResult<T>(override var code: Int, override var message: String, var data: T?) : Serializable, BaseReturn {
+data class MerchantResult<T>(override var code: Int, override var message: String, var data: T?=null) : Serializable, BaseReturn {
     companion object {
         private const val serialVersionUID = -1L
     }
 
-    constructor(baseReturn: BaseReturn, data: T?) :
+    constructor(baseReturn: BaseReturn, data: T?=null) :
             this(baseReturn.code, baseReturn.message, data)
-
-    constructor(baseReturn: BaseReturn) :
-            this(baseReturn.code, baseReturn.message, null)
 }
 
 data class HttpConfig(val httpMethod: String,

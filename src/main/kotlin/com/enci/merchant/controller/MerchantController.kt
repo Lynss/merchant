@@ -27,7 +27,7 @@ class MerchantController(val merchantService: MerchantService) {
                 "discountAmount": 0,
                 "originalAmount": 1,
                 "tradeAmount": 1,
-                "notifyUrl": "http://localhost:8080/callback",
+                "notifyUrl": "http://10.110.5.5:8080/notify",
                 "orderName": "车险订单",
                 "payeeCusOpenid":"73b24f53ffc64486eb40d606456fb04d",
                 "payerCusOpenid":"231",
@@ -43,10 +43,11 @@ class MerchantController(val merchantService: MerchantService) {
     fun platformUrl(@RequestBody testRequest: TradeRequest, response: HttpServletResponse): MerchantResult<RequestPayMessageDTO> {
         //测试请求参数
         val testRequestData = objectMapper.writeValueAsString(testRequest)
-        return merchantService.postForPlatformData(testRequestData, response)
+        val postForPlatformData = merchantService.postForPlatformData(testRequestData, response)
+        return postForPlatformData
     }
 
-    @PostMapping("/callback")
+    @PostMapping("/notify")
     fun callback(request: HttpServletRequest, response: HttpServletResponse) {
         val requestData: String = request.getParameter("code")
         val writer = response.writer

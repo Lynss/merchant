@@ -28,12 +28,12 @@ class MerchantServiceImpl : MerchantService {
         val APP_ID = "dpf43f3p2l4k3l03"
         val SIGNATURE_METHOD = "RSA-SHA1"
         val VERSION = "1.0"
-        val PRIVATE_KEY = "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAJ3ZfSRieTqOKtxNxVydZgRf9yXqlovZwu2diD8d8CT57n4OiraNxAaJ2ENaFbRHfid9oiBhiwZyEja1Sat1FZeaH1I8QlZL5sU9vbNuQC03bjrXlb8UI4enVhiiXB1ieY6rFLXXMpDP90htLKyIvH+RkNgzJvQXVhzzoFm12gOBAgMBAAECgYBD14DgjW47C3VCYC6OApwhDznC0xNHIh2UUJuJPQ3EZqLpDMjzcvSoNsB7GhGv/PYsdOOkdSfyaj6HwtzZ0yWm5QZIQv66nQpxL1Ss3fQeqt5px/kFjPOnYOKYg4A9Cn9ffSMKo7kMwh1KXOVrZ+NLHdPp/8QAhcGyE5eHZmKFzQJBAPh+WHSOYiLfxd0WrQpNvMA8Hmio8BzLnVRJKG7TZwdD47FdY6tjCGg7zXVviISBaJdzVSf6wYAg9tkPwtGykVsCQQCinix+AyM7g11WjBD0be4kwHqWlKJ8kCApIkitrbwMVaalBfLsmhimUPv6uyEdTNAFVJTjOAvuAuYy6GUauRlTAkEA4/7w5Aib7EmK/v7GSBTpYSwH7plKrfD4apQxP/ZBqr3UlTENuPvFg/WS3vQ1uvYNZCBS+rqtfgVA2AoJA2QmzwJANj+8KgGT9FubfK7XTSOLKXmIq8lD93gBMpe8VSw7KoY8RJsacjHp/TnRBdD9eA/S6aRQ0wg0ep8++kaqy+Jp/wJAdKBASp/9fgp0iJiVxG/IEx/2fJDDATsEqqAeA/F82HutSJQglFnqh5/rGZs9Eq7ovzlSa7qOLzRv6KTtt0U95g=="
+        val PRIVATE_KEY ="MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAJNgACdcxwVVL6DACVanU71J6DbJFse+0kUTwvxvCrwUfQr368Sx6rCBzH/6NAqiItFGDS6KtbjYDoMCRRMgiOrTshIjUpdmZQN6obeVaLwuJxCc7erzZV9ZZunEel4JT/y0sjI2oGCBLl3L3pBu5c3VtonZVJ70xyhmciaTodkrAgMBAAECgYBnekChYsNbOzT16eCkt1hU0E/8J7WXCqUZW4bNOCqRZNFnoiwpL8NZq8mrEkL4NF++ETGwPDTcVNfbpPxbMbzwFGV2mfIsVKtIoPfS67i5FHXnhNEb2oURMVR4k4Y70jSd5HlpzIImN/HAlriEmMKOyx5hwFKwBWUbs43zoVK0AQJBAMWkgnrehmu8N2zOpBeezJfPlOGH8A28zEPWykGAZCqTNNF6pPZkSoU1WAnbW1oPxEjyutpJXEjBFwfMPpHQU5kCQQC+49eVWxufYRFqZR/BX6DTrVBSwro1liw9OyZo/c6m7JR6DXVc1IyU8N/4K6UkGz88wiJ/SUzdCoMrJSd6IM1jAkAYqaimkHIRq5D3AOo1EFnTb9HSOtZXwIF0za67cbwOHARxR26iWG18JeXwhPDnUiRaPf/XEWR0p7OqA3CjXW2xAkA6eng31CJhMA5yxqn0xoPxdP3PbMI42lmRJIa+0Uo2jvFpdqgGmUK7+hLS5yP/LK2xwlNpJR579NV8KTSv0E67AkEAtdODq4h23DZT4y0XOwKimd/Rk2e0/7tkd/LxBiSxV+wszPk+qqF44kmrlwbqy+rHlgttzT6YZQ7typ9EMjgthg=="
     }
 
     //获取加密方式，根据配置或者数据库信息获取,默认支持rsa
     override fun postForPlatformData(testRequestData: String,response: HttpServletResponse): MerchantResult<RequestPayMessageDTO> {
-        val getUrl = "http://localhost:80/api/pay/gateway"
+        val getUrl = "http://sitpay.e-nci.com/api/pay/gateway"
         val queryBody = Base64.encode(RSAUtils.encryptByPrivateKey(testRequestData.toByteArray(), PRIVATE_KEY))
         val getUrlConfig = HttpConfig("post", SIGNATURE_METHOD, PRIVATE_KEY, getUrl, APP_ID, VERSION,
                 MediaType.APPLICATION_JSON_TYPE, null, queryBody)

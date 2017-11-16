@@ -16,7 +16,7 @@
                 var data = reply.data
                 $.ajax({
                     url:"http://localhost:8080/url",
-                    type: 'post',
+                    method: 'POST',
                     data:JSON.stringify(data),
                     contentType:"application/json"
                 }).done(
